@@ -7,9 +7,8 @@ import java.sql.SQLException;
 public class Database {
 
     private final static String DRIVER = "postgresql";
-    private final static String HOST = "localhost";
-    private final static int PORT = 30001;
-    private final static String DATABASE_NAME = "customerdb";
+    private final static String DB_URL = "localhost:30002";
+    private final static String DATABASE_NAME = "stationdb";
     private final static String USERNAME = "postgres";
     private final static String PASSWORD = "postgres";
 
@@ -19,10 +18,9 @@ public class Database {
 
     private static String getUrl() {
         return String.format(
-                "jdbc:%s://%s:%s/%s?user=%s&password=%s",
+                "jdbc:%s://%s/%s?user=%s&password=%s",
                 DRIVER,
-                HOST,
-                PORT,
+                DB_URL,
                 DATABASE_NAME,
                 USERNAME,
                 PASSWORD

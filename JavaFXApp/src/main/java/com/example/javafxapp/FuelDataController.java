@@ -28,7 +28,7 @@ public class FuelDataController {
 
         HttpRequest request = HttpRequest.newBuilder()
                 //.uri(new URI("https://v2.jokeapi.dev/joke/Programming?format=txt"))
-                .uri(new URI("http://localhost:8081/customer/" + customerID.getText()))
+                .uri(new URI("http://localhost:8080/customer/" + customerID.getText()))
                 //.uri(new URI("http://localhost:8081/books/post"))
                 .GET()
                 //.POST(HttpRequest.BodyPublishers.ofString(bookID.getText()))
