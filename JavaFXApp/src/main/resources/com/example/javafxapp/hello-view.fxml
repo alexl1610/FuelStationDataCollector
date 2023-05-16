@@ -14,8 +14,6 @@
 
     <Label text="Customer ID"/>
     <TextField fx:id="customerID" />
-    <Button text="Generate Invoice" onAction="#onGenerateButtonClick"/>
     <Label fx:id="invoiceText"/>
-
-    <Button text="Invoice" onAction="#getInvoice"/>
+    <Button text="Generate Invoice" onAction="#getInvoice"/>
 </VBox>

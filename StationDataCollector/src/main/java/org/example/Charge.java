@@ -3,9 +3,7 @@ package org.example;
 public class Charge {
 
     private int id;
-
     private int kwH;
-
     private int customer_id;
 
     public Charge(int id, int kwH, int customer_id) {

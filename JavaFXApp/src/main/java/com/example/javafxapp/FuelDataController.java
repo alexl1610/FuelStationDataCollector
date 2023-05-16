@@ -18,11 +18,6 @@ public class FuelDataController {
     private Label invoiceText;
 
     @FXML
-    protected void onGenerateButtonClick() {
-        invoiceText.setText("You created an invoice!");
-    }
-
-    @FXML
     protected void getInvoice() throws URISyntaxException, IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
 

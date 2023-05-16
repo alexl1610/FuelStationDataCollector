@@ -1,8 +1,8 @@
 package org.example;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Database {
 
@@ -25,6 +25,25 @@ public class Database {
                 USERNAME,
                 PASSWORD
         );
+    }
+
+    public static List<String> getDBUrls() {
+        String query = "SELECT db_url FROM station";
+        List<String> dbUrls = new ArrayList<>();
+
+        try (
+                java.sql.Connection conn = Database.getConnection();
+                PreparedStatement ps = conn.prepareStatement(query);
+                ResultSet rs = ps.executeQuery()
+        ) {
+            while (rs.next()) {
+                String dbUrl = rs.getString("db_url");
+                dbUrls.add(dbUrl);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return dbUrls;
     }
 }
 
