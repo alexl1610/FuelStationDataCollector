@@ -14,6 +14,9 @@
 
     <Label text="Customer ID"/>
     <TextField fx:id="customerID" />
-    <Label fx:id="invoiceText"/>
-    <Button text="Generate Invoice" onAction="#getInvoice"/>
+    <Label fx:id="createInvoiceText" text="No invoice created yet!"/>
+    <Button text="Generate Invoice" onAction="#createInvoice"/>
+
+    <Label fx:id="getInvoiceText" text="No Invoice"/>
+    <Button text="Get Invoice" onAction="#getInvoice"/>
 </VBox>

@@ -15,23 +15,41 @@ public class FuelDataController {
     @FXML
     private TextField customerID;
     @FXML
-    private Label invoiceText;
+    private Label getInvoiceText;
+    @FXML
+    private Label createInvoiceText;
 
     @FXML
     protected void getInvoice() throws URISyntaxException, IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest request = HttpRequest.newBuilder()
-                //.uri(new URI("https://v2.jokeapi.dev/joke/Programming?format=txt"))
                 .uri(new URI("http://localhost:8080/customer/" + customerID.getText()))
-                //.uri(new URI("http://localhost:8081/books/post"))
                 .GET()
-                //.POST(HttpRequest.BodyPublishers.ofString(bookID.getText()))
                 .build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         String invoice = response.body();
-        invoiceText.setText(invoice);
+        getInvoiceText.setText(invoice);
     }
+
+    @FXML
+    protected void createInvoice() throws URISyntaxException, IOException, InterruptedException {
+        HttpClient client = HttpClient.newHttpClient();
+
+        String customerId = customerID.getText();
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI("http://localhost:8080/customer/" + customerId)) // Include the customer ID in the URL
+                .POST(HttpRequest.BodyPublishers.ofString(customerId))
+                .header("Content-Type", "text/plain")
+                .build();
+
+        client.send(request, HttpResponse.BodyHandlers.discarding());
+
+        System.out.println("Invoice creation request sent successfully!");
+        createInvoiceText.setText("Invoice creation request sent successfully!");
+    }
+
 }
