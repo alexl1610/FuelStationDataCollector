@@ -13,6 +13,9 @@ public class DataCollectionReceiver {
         Queue.handleQueue();
     }
 
+    //taskData is a Map that stores the data for each customer
+    // key is the customer ID
+    // value is a list of integers representing the totals
     static Map<Integer, List<Integer>> taskData = new HashMap<>();
 
     public static void processTaskStart(int customerId) {

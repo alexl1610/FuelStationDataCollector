@@ -11,7 +11,6 @@ import java.util.concurrent.TimeoutException;
 public class Queue {
 
     private final static String RECEIVE_TO_PDF = "RECEIVE_TO_PDF";
-    private final static String PDF_TO_ = "PDF_TO_";
 
     public static void handleQueue() throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
@@ -31,17 +30,8 @@ public class Queue {
 
             PDFGenerator.createInvoice(customer_id, overallTotal);
 
-            //sendMessageTo(channel, overallTotal, customer_id);
-
         };
 
         channel.basicConsume(RECEIVE_TO_PDF, true, deliverCallback, consumerTag -> {});
-    }
-
-    public static void sendMessageTo(Channel channel, int total, int id) throws IOException {
-        String message = total + "," + id;
-        channel.queueDeclare(RECEIVE_TO_PDF, false, false, false, null);
-        channel.basicPublish("", RECEIVE_TO_PDF, null, message.getBytes(StandardCharsets.UTF_8));
-        System.out.println(" [x] Sent overall total of '" + message + "' to PDF Generator");
     }
 }

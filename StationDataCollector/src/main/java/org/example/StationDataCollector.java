@@ -8,4 +8,5 @@ public class StationDataCollector {
     public StationDataCollector() throws IOException, TimeoutException {
         Queue.handleQueue();
     }
+
 }

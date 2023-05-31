@@ -43,9 +43,13 @@ public class Queue {
     private static int getTotalKwhForCustomer(int customer_id) {
         List<Charge> stationData = Database.getStationData(dbUrl);
 
+        // converts the list into a stream, which allows for sequential processing of the elements
         return stationData.stream()
+                // Filter the data based on the customer_id
                 .filter(data -> data.getCustomer_id() == customer_id)
+                // Map each filtered Charge object to its kWh value
                 .mapToInt(Charge::getKwH)
+                // Sum all the mapped kWh values and return the total
                 .sum();
     }
 
